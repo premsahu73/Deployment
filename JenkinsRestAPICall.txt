@@ -1,0 +1,63 @@
+============================================================================================================================================
+pipeline {
+   agent 'any'
+  stages {
+    stage('Get') { // Get code
+      steps {
+        script{
+        def url = new URL("http://localhost:8080/hello")
+        def urlConnection = url.openConnection()
+        urlConnection.setDoOutput(true)
+        urlConnection.setRequestMethod("GET")
+        urlConnection.setRequestProperty("Content-Type", "application/json")
+        def result = urlConnection.getResponseCode();
+        println("---------------------------->  "+result);
+        InputStream inputStream = urlConnection.getInputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        def line = reader.readLine()
+        println(line);   
+        }
+      }
+    }
+   }
+}
+==============================================================================================================================================
+pipeline {
+   agent 'any'
+  stages {
+    stage('POST') { // POST code
+      steps {
+        script{
+        def url = new URL("http://localhost:8080/hello/hi")
+        def urlConnection = url.openConnection()
+        urlConnection.setDoOutput(true)
+        urlConnection.setDoInput(true)
+        urlConnection.setRequestMethod("POST")
+        urlConnection.setRequestProperty("Content-Type", "application/json")
+        urlConnection.setRequestProperty("Accept", "application/json")
+       
+        println("Post value from API ---------------------------->");
+        def input = '''{\"name\":\"Prem",\"sex\":\"MALE\"}''';
+        
+        OutputStream os = urlConnection.getOutputStream();
+		os.write(input.getBytes());
+        def result = urlConnection.getResponseCode();
+        println("---------------------------->  "+result);
+       }
+      }
+    }
+   }
+}
+
+No pending signature approvals.
+
+method java.io.OutputStream write byte[]
+method java.lang.String getBytes
+method java.net.HttpURLConnection getResponseCode
+method java.net.HttpURLConnection setRequestMethod java.lang.String
+method java.net.URL openConnection
+method java.net.URLConnection getOutputStream
+method java.net.URLConnection setDoInput boolean
+method java.net.URLConnection setDoOutput boolean
+method java.net.URLConnection setRequestProperty java.lang.String java.lang.String
+
