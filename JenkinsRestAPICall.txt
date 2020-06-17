@@ -5,7 +5,7 @@ pipeline {
     stage('Get') { // Get code
       steps {
         script{
-        def url = new URL("http://localhost:8080/hello")
+        def url = new URL("http://localhost:8080/college/getApi")
         def urlConnection = url.openConnection()
         urlConnection.setDoOutput(true)
         urlConnection.setRequestMethod("GET")
@@ -28,7 +28,7 @@ pipeline {
     stage('POST') { // POST code
       steps {
         script{
-        def url = new URL("http://localhost:8080/hello/hi")
+        def url = new URL("http://localhost:8080/college/postApi")
         def urlConnection = url.openConnection()
         urlConnection.setDoOutput(true)
         urlConnection.setDoInput(true)
@@ -51,13 +51,19 @@ pipeline {
 
 No pending signature approvals.
 
+No pending signature approvals.
+
+method java.io.BufferedReader readLine
 method java.io.OutputStream write byte[]
 method java.lang.String getBytes
 method java.net.HttpURLConnection getResponseCode
 method java.net.HttpURLConnection setRequestMethod java.lang.String
 method java.net.URL openConnection
+method java.net.URLConnection getInputStream
 method java.net.URLConnection getOutputStream
 method java.net.URLConnection setDoInput boolean
 method java.net.URLConnection setDoOutput boolean
 method java.net.URLConnection setRequestProperty java.lang.String java.lang.String
+new java.io.BufferedReader java.io.Reader
+new java.io.InputStreamReader java.io.InputStreamhttp://localhost:8080/college/postApi
 
